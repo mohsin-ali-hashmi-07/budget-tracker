@@ -11,10 +11,14 @@
 }
 
 .left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    place-self: center;
+    // padding: 20px;
+    width: 30rem;
+    height: 35rem;
+    // border: 1px solid black;
 }
 
 .right {

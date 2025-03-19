@@ -1,6 +1,45 @@
 <app-grid-layout>
     <div left>
-        Hello world
+        <div class="login-container">
+            <h2>Welcome Back!</h2>
+            <p>Sign in to continue to Budget Tracker</p>
+          
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              
+              <!-- Email Field -->
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="test@gmail.com" type="email">
+                <mat-icon matSuffix>mail</mat-icon>
+              </mat-form-field>
+          
+              <!-- Password Field -->
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your password">
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                  <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+              </mat-form-field>
+          
+              <!-- Remember Me & Forgot Password -->
+              <div class="options">
+                <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+              </div>
+          
+              <!-- Login Button -->
+              <button mat-flat-button color="primary" class="full-width login-btn" type="submit" [disabled]="loginForm.invalid">
+                LOG IN
+              </button>
+          
+              <!-- Sign Up Link -->
+              <p class="signup-text">
+                Don’t have an account? <a href="#" class="signup-link">Sign Up</a>
+              </p>
+            </form>
+          </div>
+          
     </div>
     <div right>
        <img [src]="imagePath" alt="login-image"/>

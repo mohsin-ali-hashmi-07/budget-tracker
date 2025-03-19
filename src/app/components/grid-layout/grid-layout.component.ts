@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './grid-layout.component.scss'
 })
 export class GridLayoutComponent {
-
+  logoImagePath = 'assets/images/trackerLogo.svg';
 }
