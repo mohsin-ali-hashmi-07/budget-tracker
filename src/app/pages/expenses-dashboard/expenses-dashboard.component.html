@@ -1,1 +1,87 @@
-<p>expenses-dashboard works!</p>
+<div class="expenses-header">
+    <h2>Expenses</h2>
+    <button class="expense-btn" mat-flat-button color="primary" (click)="openDialog('add')">Add Expenses</button>
+  </div>
+  <div class="expenses-header">
+    <h4>Expenses</h4>
+  <div class="filters">
+    <div class="filter-item">
+      <label for="sort">Sort By</label>
+      <select id="sort">
+        <option value="all">All</option>
+        <option value="date">By Date</option>
+      </select>
+    </div>
+
+    <div class="filter-item">
+      <label for="date">By Date</label>
+      <input type="date" id="date">
+    </div>
+
+    <div class="filter-item search">
+      <input type="text" placeholder="🔍 Search">
+    </div>
+  </div>
+  </div>
+  
+  <table mat-table [dataSource]="dataSource" matSort>
+  
+    <!-- Expense Column -->
+    <ng-container matColumnDef="expense">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Expense </th>
+      <td mat-cell *matCellDef="let element"> {{element.expense}} </td>
+    </ng-container>
+  
+    <!-- Total Expenditure Column -->
+    <ng-container matColumnDef="totalExpenditure">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Expenditure </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-progress-bar mode="determinate" [value]="element.totalExpenditure"></mat-progress-bar>
+        {{element.totalExpenditure}}%
+      </td>
+    </ng-container>
+  
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price (PKR) </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+  
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+  
+    <!-- User Column -->
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> User </th>
+      <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+    </ng-container>
+  
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+      </td>
+    </ng-container>
+  
+    <!-- Table Header and Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
+  
+  <div class="custom-paginator">
+    <div class="left">
+      {{ rangeLabel() }} 
+    </div>
+  
+    <div class="right">
+       <mat-paginator></mat-paginator>
+    </div>
+    
+  </div>
+  

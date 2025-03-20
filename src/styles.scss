@@ -1,8 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
 html, body { height: 100%; }
 body { margin: 0 }
 
 * {
     font-family: 'Poppins', sans-serif ;
+  }
+
+  .mat-mdc-dialog-surface {
+    overflow: hidden !important; /* Prevents unwanted scrolling */
+    border-radius: 12px !important; /* Ensures smooth rounded corners */
+  }
+
+  .dense-2 {
+    @include mat.all-component-densities(-3);
   }
