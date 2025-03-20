@@ -23,6 +23,16 @@
         height: 90px;
     }
 
+    .input-group-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem; // Adds spacing between first and last name fields
+    }
+
+    .half-width {
+        width: 48%;
+    }
+
     .custom-label {
         font-size: 14px;
         font-weight: 500;
@@ -54,6 +64,7 @@
             color: #6c44f3;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
         }
     }
 

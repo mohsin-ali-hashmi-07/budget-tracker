@@ -1,0 +1,72 @@
+<app-grid-layout>
+    <div left>
+        <div class="signup-container">
+            <h2>Sign Up</h2>
+            <p>Welcome to our community</p>
+          
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <div class="input-group-row">
+                <div class="input-group half-width">
+                  <label class="custom-label" for="firstName">First Name</label>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <input matInput id="firstName" formControlName="firstName" placeholder="John" type="text">
+                  </mat-form-field>
+                </div>
+          
+                <div class="input-group half-width">
+                  <label class="custom-label" for="lastName">Last Name</label>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <input matInput id="lastName" formControlName="lastName" placeholder="Doe" type="text">
+                  </mat-form-field>
+                </div>
+              </div>
+          
+              <div class="input-group">
+                <label class="custom-label" for="email">Email</label>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput id="email" formControlName="email" placeholder="test@gmail.com" type="email">
+                  <mat-icon matSuffix>mail_outline</mat-icon>
+                </mat-form-field>
+              </div>
+          
+              <div class="input-group">
+                <label class="custom-label" for="password">Password</label>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput id="password" formControlName="password"
+                    [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your password">
+                  <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+          
+              <div class="input-group">
+                <label class="custom-label" for="confirmPassword">Confirm Password</label>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput id="confirmPassword" formControlName="confirmPassword"
+                    [type]="hidePassword ? 'password' : 'text'" placeholder="Re-enter your password">
+                </mat-form-field>
+              </div>
+          
+              <div class="input-group">
+                <label class="custom-label" for="budgetLimit">Budget Limit</label>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput id="budgetLimit" formControlName="budgetLimit" placeholder="Enter your budget limit" type="number">
+                </mat-form-field>
+              </div>
+          
+              <button mat-flat-button color="primary" class="full-width signup-btn" type="submit"
+                [disabled]="signupForm.invalid">
+                SIGN UP
+              </button>
+          
+              <p class="login-text">
+                Already have an account? <a (click)="goToLogin()" class="login-link">Log in</a>
+              </p>
+            </form>
+          </div>
+    </div>
+    <ng-container right>
+        <img [src]="imagePath" alt="signup-image" />
+    </ng-container>
+</app-grid-layout>
