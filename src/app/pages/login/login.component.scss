@@ -1,53 +1,79 @@
 .login-container {
     // max-width: 400px;
     margin: auto;
-    padding: 2rem 0;
+    padding: 5rem 0 0 0;
     // text-align: center;
-  
+
     h2 {
-      font-size: 24px;
-      font-weight: 600;
+        font-size: 24px;
+        margin: 0;
+        font-weight: 600;
     }
-  
+
     p {
-      color: gray;
-      margin-bottom: 1rem;
+        color: gray;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-weight: 400;
     }
-  
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        height: 90px;
+    }
+
+    .custom-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #6b7280;
+    }
+
+
     .full-width {
-      width: 100%;
-      margin-bottom: 1rem;
+        width: 100%;
+        margin-bottom: 1rem;
+
+
     }
-  
+
     .options {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 1rem;
-  
-      .forgot-password {
-        color: blue;
-        text-decoration: none;
-      }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        margin-bottom: 1rem;
+
+        .forgot-password {
+            color: blue;
+            text-decoration: none;
+        }
     }
-  
+
+
     .login-btn {
-      background: #6c44f3;
-      color: white;
-      font-weight: bold;
-      height: 48px;
+        background: #6c44f3;
+        color: white;
+        font-weight: 600;
+        height: 48px;
+        border-radius: 5px;
     }
-  
+
     .signup-text {
-      margin-top: 1rem;
-      font-size: 14px;
-  
-      .signup-link {
-        color: #6c44f3;
-        text-decoration: none;
-        font-weight: bold;
-      }
+        margin-top: 0.2rem;
+        font-size: 14px;
+        place-self: center;
+
+        .signup-link {
+            color: #6c44f3;
+            text-decoration: none;
+            font-weight: bold;
+        }
     }
-  }
-  
+
+}
+
+img {
+    height: auto;
+    width: 60%;
+}

@@ -21,7 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 export class LoginComponent {
   imagePath = 'assets/images/loginImage.svg';
-  hidePassword = true; // Toggle password visibility
+  hidePassword = true;
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
