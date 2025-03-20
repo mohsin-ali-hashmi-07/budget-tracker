@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GridLayoutComponent } from "../../../components/grid-layout/grid-layout.component";
+import { GridLayoutComponent } from "../../../components/layouts/grid-layout/grid-layout.component";
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';

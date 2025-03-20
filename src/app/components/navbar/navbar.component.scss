@@ -1,0 +1,31 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+  
+      img {
+        width: 10rem;
+        margin-right: 10px;
+      }
+    }
+  
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  

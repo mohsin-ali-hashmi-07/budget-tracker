@@ -1,0 +1,20 @@
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+    <nav class="nav-links">
+        <a routerLink="/home/analytics" routerLinkActive="active">
+            <img src="assets/images/analytics.svg" alt="Analytics">
+            <span *ngIf="!isCollapsed">Analytics</span>
+        </a>
+        <a routerLink="/home/expense" routerLinkActive="active">
+            <img src="assets/images/expenses.svg" alt="Analytics">
+            <span *ngIf="!isCollapsed">Expenses</span>
+        </a>
+        <a routerLink="/home/users" routerLinkActive="active">
+            <img src="assets/images/users.svg" alt="Analytics">
+            <span *ngIf="!isCollapsed">Users</span>
+        </a>
+        <a routerLink="/logout">
+            <img src="assets/images/logout.svg" alt="Analytics">
+            <span *ngIf="!isCollapsed">Logout</span>
+        </a>
+    </nav>
+</aside>
