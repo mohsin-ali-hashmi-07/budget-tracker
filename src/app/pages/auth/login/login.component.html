@@ -1,0 +1,48 @@
+<app-grid-layout>
+    <div left>
+        <div class="login-container">
+            <h2>Welcome Back!</h2>
+            <p>Sign in to continue to Budget Tracker</p>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <div class="input-group">
+                    <label class="custom-label" for="email">Email</label>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input matInput placeholder="test@gmail.com" id="email" formControlName="email" type="email">
+                        <mat-icon matSuffix>mail_outline</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="input-group">
+                    <label class="custom-label" for="password">Password</label>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <input matInput placeholder="Enter your password" id="password" formControlName="password"
+                            [type]="hidePassword ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+
+                <div class="options">
+                    <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
+                    <a (click)="goToResetPassword()" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button mat-flat-button color="primary" class="full-width login-btn" type="submit"
+                    [disabled]="loginForm.invalid">
+                    LOG IN
+                </button>
+
+                <p class="signup-text">
+                    Don’t have an account? <a (click)="goToSignup()" class="signup-link">Sign Up</a>
+                </p>
+            </form>
+        </div>
+
+    </div>
+    <ng-container right>
+        <img [src]="imagePath" alt="login-image" />
+    </ng-container>
+</app-grid-layout>

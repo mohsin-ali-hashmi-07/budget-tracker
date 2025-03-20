@@ -1,0 +1,76 @@
+.signup-container {
+    // max-width: 400px;
+    margin: auto;
+    padding: 5rem 0 0 0;
+    // text-align: center;
+
+    h2 {
+        font-size: 24px;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    p {
+        color: gray;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-weight: 400;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        height: 90px;
+    }
+
+    .input-group-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem; // Adds spacing between first and last name fields
+    }
+
+    .half-width {
+        width: 48%;
+    }
+
+    .custom-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #6b7280;
+    }
+
+
+    .full-width {
+        width: 100%;
+        margin-bottom: 1rem;
+
+
+    }
+
+    .signup-btn {
+        background: #6c44f3;
+        color: white;
+        font-weight: 600;
+        height: 48px;
+        border-radius: 5px;
+    }
+
+    .login-text {
+        margin-top: 0.2rem;
+        font-size: 14px;
+        place-self: center;
+
+        .login-link {
+            color: #6c44f3;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+}
+
+img {
+    height: auto;
+    width: 60%;
+}
