@@ -1,0 +1,42 @@
+<header class="navbar">
+    <div class="logo">
+      <img src="assets/images/trackerLogo.svg" alt="Budget Tracker Logo">
+      <div class="vertical-divider"></div>
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>notes</mat-icon>
+      </button>
+    </div>
+   
+    <div class="nav-icons">
+      <button mat-icon-button>
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <app-dropdown>
+      <button mat-icon-button dropdown-trigger>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <div dropdown-content class="dropdown-profile">
+        <div class="dropdown-header">
+          <div class="avatar">M</div>
+          <div class="user-info">
+            <strong>Mohsin Ali Hashmi</strong>
+            <small>mohsin.hashmi.com</small>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="dropdown-actions">
+          <button mat-button>
+            <mat-icon>person</mat-icon> Profile
+          </button>
+          <button mat-button>
+            <mat-icon>logout</mat-icon> Logout
+          </button>
+        </div>
+      </div>
+      </app-dropdown>
+    </div>
+  </header>
+  

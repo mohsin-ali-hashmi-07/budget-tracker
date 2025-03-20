@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { GridLayoutComponent } from "../../../components/grid-layout/grid-layout.component";
+import { Component, inject } from '@angular/core';
+import { GridLayoutComponent } from "../../../components/layouts/grid-layout/grid-layout.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,15 +23,15 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   imagePath = 'assets/images/loginImage.svg';
   hidePassword = true;
-  loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberMe: [false]
-    });
-  }
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+
+  loginForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    rememberMe: [false],
+  });
 
   onSubmit() {
     if (this.loginForm.valid) {
