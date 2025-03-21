@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SidebarService } from '../../services/sidebar.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 
@@ -12,10 +12,16 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent {
   isCollapsed = false;
-
-  constructor(private sidebarService: SidebarService) {
+  private sidebarService = inject(SidebarService)
+  private router = inject(Router)
+  constructor() {
     this.sidebarService.isCollapsed$.subscribe(state => {
       this.isCollapsed = state;
     });
+  }
+
+  logout() {
+    localStorage.removeItem('role');
+    this.router.navigate(['/login']);
   }
 }

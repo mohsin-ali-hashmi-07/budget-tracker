@@ -12,7 +12,7 @@
             <img src="assets/images/users.svg" alt="Analytics">
             <span *ngIf="!isCollapsed">Users</span>
         </a>
-        <a routerLink="/logout">
+        <a (click)="logout()" routerLink="/logout">
             <img src="assets/images/logout.svg" alt="Analytics">
             <span *ngIf="!isCollapsed">Logout</span>
         </a>

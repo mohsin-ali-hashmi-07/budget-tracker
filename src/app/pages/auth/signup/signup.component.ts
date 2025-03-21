@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
+import { catchError, of, tap } from 'rxjs';
+import { UserService } from '../../../services/user.service';
 
 interface SignupForm {
   firstName: FormControl<string | null>;
@@ -35,7 +37,7 @@ export class SignupComponent {
 
   private fb = inject(FormBuilder);
   private router = inject(Router);
-
+  private userService = inject(UserService);
   signupForm: FormGroup<SignupForm>;
 
   constructor() {
@@ -62,11 +64,36 @@ export class SignupComponent {
   
     return password === confirmPassword ? null : { mismatch: true };
   };
+
+  generateUserId(): number {
+    return Math.floor(Math.random() * 1000000); 
+  }
+
   onSubmit() {
-    console.log("this.signupForm.value", this.signupForm.value)
+    const userId = this.generateUserId();
+
     if (this.signupForm.valid) {
-      console.log('Form Submitted:', this.signupForm.value);
+      const userData = {
+        id: userId,
+        first_name: this.signupForm.value.firstName || '',
+        last_name: this.signupForm.value.lastName || '',
+        email: this.signupForm.value.email || '',
+        password: this.signupForm.value.password || '', 
+        budget_limit: this.signupForm.value.budgetLimit || 0,
+        expenses: [],
+        role: 'user'
+      };
+
+      this.userService.createUser(userData)
+        .pipe(
+          tap((newUser) => {
+            console.log('User created successfully:', newUser);
+            this.router.navigate(['/login']);
+          })
+        )
+        .subscribe();
     }
+    
   }
 
   goToLogin() {
