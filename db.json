@@ -1,70 +1,79 @@
 {
-    "users": [
+  "users": [
+    {
+      "id": "1",
+      "first_name": "Jhon",
+      "last_name": "Doe",
+      "email": "jhon@email.com",
+      "password": 1234,
+      "phone_number": 3075258158,
+      "budget_limit": 200000,
+      "role": "admin",
+      "job_title": "Developer",
+      "street_address": "78",
+      "city": "islamabad",
+      "state": "Pakistan",
+      "zip_code": 12345,
+      "complete_address": "",
+      "dob": 31557600000,
+      "education": "Bachelors",
+      "gender": "Male",
+      "expenses": [
         {
-            "id": 1,
-            "first_name": "Jhon",
-            "last_name":"Doe",
-            "email":"jhon@email.com",
-            "password":1234,
-            "phone_number": 3075258158 ,
-            "budget_limit":200000,
-            "role":"admin",
-            "job_title": "Developer",
-            "street_address":"78",
-            "city": "islamabad",
-            "state":"Pakistan",
-            "zip_code": 12345,
-            "complete_address": "",
-            "dob":31557600000,
-            "education":"Bachelors",
-            "gender":"Male",
-            "expenses": [
-                {
-                    "id": 1,
-                    "total_Expenditure": "50%",
-                    "date": 31557600000,
-                    "price": 25000
-                },
-                {
-                    "id": 2,
-                    "date": 31557600000,
-                    "total Expenditure": "70%",
-                    "price": 28000
-                }
-            ]
+          "id": 1,
+          "total_Expenditure": "50%",
+          "date": 31557600000,
+          "price": 25000
         },
         {
-            "id": 2,
-           "first_name": "Mohsin",
-            "last_name":"Ali",
-            "email":"mohsin@email.com",
-            "password":12345,
-            "phone_number": 3075258159,
-            "budget_limit":100000,
-            "role":"user",
-            "job_title": "Coder",
-            "street_address":"78",
-            "city": "islamabad",
-            "state":"Pakistan",
-            "zip_code": 12345,
-            "complete_address": "",
-            "dob":31557600000,
-            "education":"PHD",
-            "gender":"Male",
-            "expenses": [
-                {
-                    "id": 3,
-                    "price": 15000,
-                    "date": "22 Jan 2022",
-                    "total_Expenditure": "90%"
-                },
-                {
-                    "id": 4,
-                    "price": 5000,
-                    "date": "22 Jan 2022",
-                    "total_Expenditure": "20%"
-                }
-            ]
+          "id": 2,
+          "date": 31557600000,
+          "total Expenditure": "70%",
+          "price": 28000
         }
-    ]
+      ]
+    },
+    {
+      "id": "2",
+      "first_name": "Mohsin",
+      "last_name": "Ali",
+      "email": "mohsin@email.com",
+      "password": 12345,
+      "phone_number": 3075258159,
+      "budget_limit": 100000,
+      "role": "user",
+      "job_title": "Coder",
+      "street_address": "78",
+      "city": "islamabad",
+      "state": "Pakistan",
+      "zip_code": 12345,
+      "complete_address": "",
+      "dob": 31557600000,
+      "education": "PHD",
+      "gender": "Male",
+      "expenses": [
+        {
+          "id": 3,
+          "price": 15000,
+          "date": "22 Jan 2022",
+          "total_Expenditure": "90%"
+        },
+        {
+          "id": 4,
+          "price": 5000,
+          "date": "22 Jan 2022",
+          "total_Expenditure": "20%"
+        }
+      ]
+    },
+    {
+      "id": 856116,
+      "first_name": "hashmi",
+      "last_name": "Mohsin",
+      "email": "mohsinalihashmi.7@gmail.com",
+      "password": "1234",
+      "budget_limit": 345623,
+      "expenses": []
+    }
+  ]
 }

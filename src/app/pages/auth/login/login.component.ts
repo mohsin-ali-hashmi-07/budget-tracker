@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -26,16 +27,30 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private userService = inject(UserService);
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required]],
     rememberMe: [false],
   });
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Form Submitted:', this.loginForm.value);
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+
+      this.userService.login(email, password)
+        .pipe()
+        .subscribe((users) => {
+          if (users && users.length > 0) {
+            const user = users[0]; 
+            localStorage.setItem('role', 'user'); 
+            this.router.navigate(['/home/expense']);
+          } else {
+            alert('Invalid email or password. Please try again.');
+          }
+        });
     }
   }
 

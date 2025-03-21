@@ -6,15 +6,18 @@ import { NavLayoutComponent } from './components/layouts/nav-layout/nav-layout.c
 import { ExpensesDashboardComponent } from './pages/expenses-dashboard/expenses-dashboard.component';
 import { AnalyticsDashboardComponent } from './pages/analytics-dashboard/analytics-dashboard.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { noAuthGuard } from './guards/no-auth.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: "",  redirectTo: 'login', pathMatch: 'full' },
-    { path: "login", component: LoginComponent },
-    { path: "signup", component: SignupComponent },
-    { path: "forgot-password", component: ForgotPasswordComponent },
+    { path: "login", component: LoginComponent , canActivate: [noAuthGuard]},
+    { path: "signup", component: SignupComponent, canActivate: [noAuthGuard] },
+    { path: "forgot-password", component: ForgotPasswordComponent, canActivate: [noAuthGuard] },
     {
         path: 'home',
         component: NavLayoutComponent,
+        canActivate: [authGuard],
         children: [
             { path: "analytics", component: AnalyticsDashboardComponent },
           { path: "expense", component: ExpensesDashboardComponent },
