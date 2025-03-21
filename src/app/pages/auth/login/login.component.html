@@ -8,7 +8,7 @@
 
                 <div class="input-group">
                     <label class="custom-label" for="email">Email</label>
-                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-form-field appearance="outline" class="full-width dense-2">
                         <input matInput placeholder="test@gmail.com" id="email" formControlName="email" type="email">
                         <mat-icon matSuffix>mail_outline</mat-icon>
                     </mat-form-field>
@@ -16,7 +16,7 @@
 
                 <div class="input-group">
                     <label class="custom-label" for="password">Password</label>
-                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-form-field appearance="outline" class="full-width dense-2">
                         <input matInput placeholder="Enter your password" id="password" formControlName="password"
                             [type]="hidePassword ? 'password' : 'text'">
                         <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">

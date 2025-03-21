@@ -1,0 +1,31 @@
+<div class="modal-wrapper">
+    <h2 mat-dialog-title>{{ dialogTitle }}</h2>
+    <div mat-dialog-content>
+        <form [formGroup]="expenseForm">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" placeholder="Title">
+            </mat-form-field>
+
+            <div class="form-row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>Price (PKR)</mat-label>
+                    <input matInput formControlName="price" type="number" placeholder="Price">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" >
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="form-row">
+        <button class="half-width less-rounded-padding" mat-outlined-button (click)="onCancel()">Cancel</button>
+        <button class="half-width less-rounded-padding" mat-raised-button [color]="data.mode === 'delete' ? 'warn' : 'primary'" (click)="onSave()">
+            {{ actionButtonLabel }}
+        </button>
+    </div>
+</div>
