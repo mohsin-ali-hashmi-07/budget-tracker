@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { ToastService } from '../../../services/toast.service';
+import { UserDetailsService } from '../../../services/user-details.service';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private userService = inject(UserService);
+  private userDetailsService = inject(UserDetailsService);
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -44,8 +46,8 @@ export class LoginComponent {
       this.userService.login(email, password)
         .pipe()
         .subscribe((users) => {
-          if (users && users.length > 0) {
-            localStorage.setItem('role', 'user'); 
+          if (users && users.length > 0) { 
+            this.userDetailsService.setUserDetails(users[0]);
             this.toastService.showToast('Login Success', 'success');
             this.router.navigate(['/home/expense']);
           } else {

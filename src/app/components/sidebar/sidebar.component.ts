@@ -11,14 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  isCollapsed = false;
+  
   private sidebarService = inject(SidebarService)
   private router = inject(Router)
-  constructor() {
-    this.sidebarService.isCollapsed$.subscribe(state => {
-      this.isCollapsed = state;
-    });
-  }
+ isCollapsed = this.sidebarService.isCollapsed$;
 
   logout() {
     localStorage.removeItem('role');

@@ -16,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { ExpenseDialogComponent } from '../../components/expense-dialog/expense-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
+import { UserDetailsService } from '../../services/user-details.service';
 
 @Component({
   selector: 'app-expenses-dashboard',
@@ -35,25 +37,27 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './expenses-dashboard.component.scss'
 })
 export class ExpensesDashboardComponent {
-  displayedColumns: string[] = ['expense', 'totalExpenditure', 'price', 'date', 'user', 'actions'];
-  dataSource = new MatTableDataSource(EXPENSES_DATA);
+  displayedColumns: string[] = ['expense', 'totalExpenditure', 'price', 'date', 'actions'];
+  dataSource = new MatTableDataSource<any>([]);
   private dialog = inject(MatDialog);
-
+  private userService = inject(UserService); 
+  private userDetails = inject (UserDetailsService)
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  totalItems = signal(235);
+  totalItems = signal(0);
   pageSize = signal(8);
   pageIndex = signal(0);
 
-
-  @ViewChild(MatSort) sort!: MatSort;
+  ngOnInit(): void {
+    this.fetchExpenses();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  // Computed Signal to Generate Custom Range Label
   rangeLabel = computed(() => {
     const startIndex = this.pageIndex() * this.pageSize() + 1;
     // const endIndex = Math.min((this.pageIndex() + 1) * this.pageSize(), this.totalItems());
@@ -69,7 +73,25 @@ export class ExpensesDashboardComponent {
     console.log('Page changed to:', page);
   }
 
-  openDialog(mode: 'add' | 'edit' | 'delete', expense?: { title: string; price: number; date: string }) {
+  fetchExpenses(): void {
+    const user = this.userDetails.getCurrentUser();
+    this.userService.getUserById(user.id).subscribe({
+      next: (user: any) => {
+        
+        const expenses = user[0].expenses || [];
+        this.dataSource.data = expenses.map((expense: any) => ({
+          id: expense.id,
+          expense: expense.expense,
+          totalExpenditure: expense.total_Expenditure,
+          price: expense.price,
+          date: expense.date,
+        }));
+        this.totalItems.set(expenses.length);
+      }
+    });
+  }
+
+  openDialog(mode: 'add' | 'edit' | 'delete', expense?: { expense: string; price: number; date: number, id:number, total_Expenditure: string }) {
     const dialogRef = this.dialog.open(ExpenseDialogComponent, {
       width: '450px',
       data: { mode, expense }
@@ -77,17 +99,9 @@ export class ExpensesDashboardComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(`${mode} Expense:`, result);
+        this.fetchExpenses();
       }
     });
   }
 }
-
-const EXPENSES_DATA = [
-  { expense: 'Prestigious Clientele Segment', totalExpenditure: 50, price: '25,000', date: '22 Jan 2022', user: 'guy-hawkins' },
-  { expense: 'Luxury Lifestyle Patrons', totalExpenditure: 100, price: '510', date: '22 Feb 2023', user: 'wade-warren' },
-  { expense: 'Premium Customers', totalExpenditure: 60, price: '17,420', date: '22 Mar 2021', user: 'jenny-wilson' },
-  { expense: 'Exclusive High-Spending Patrons', totalExpenditure: 70, price: '2,500', date: '22 Apr 2024', user: 'robert-fox' },
-  { expense: 'Affluent Consumer Segment', totalExpenditure: 20, price: '925', date: '22 May 2024', user: 'williamson' },
-];
 

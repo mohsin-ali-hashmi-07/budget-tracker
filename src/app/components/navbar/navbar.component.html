@@ -18,10 +18,10 @@
 
       <div dropdown-content class="dropdown-profile">
         <div class="dropdown-header">
-          <div class="avatar">M</div>
+          <div class="avatar">{{ user.first_name.charAt(0).toUpperCase() }}</div>
           <div class="user-info">
-            <strong>Mohsin Ali Hashmi</strong>
-            <small>mohsin.hashmi.com</small>
+            <strong>{{user.first_name + ' ' + user.last_name}}</strong>
+            <small>{{user.email}}</small>
           </div>
         </div>
 

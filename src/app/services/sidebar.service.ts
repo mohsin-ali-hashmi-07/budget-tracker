@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,10 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SidebarService {
 
-  private isCollapsedSubject = new BehaviorSubject<boolean>(false);
-  isCollapsed$ = this.isCollapsedSubject.asObservable();
+  private isCollapsed = signal(false);
+
+  isCollapsed$ = this.isCollapsed.asReadonly();
 
   toggleSidebar() {
-    this.isCollapsedSubject.next(!this.isCollapsedSubject.value);
+    this.isCollapsed.update((current) => !current);
   }
 }
