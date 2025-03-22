@@ -4,7 +4,7 @@
         <form [formGroup]="expenseForm">
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Title</mat-label>
-                <input matInput formControlName="title" placeholder="Title">
+                <input matInput formControlName="expense" placeholder="Title">
             </mat-form-field>
 
             <div class="form-row">
@@ -15,7 +15,7 @@
 
                 <mat-form-field appearance="outline" class="half-width">
                     <mat-label>Date</mat-label>
-                    <input matInput [matDatepicker]="picker" >
+                    <input matInput [matDatepicker]="picker" formControlName="date" />
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

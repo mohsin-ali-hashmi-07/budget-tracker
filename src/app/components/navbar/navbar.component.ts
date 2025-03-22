@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { SidebarService } from '../../services/sidebar.service';
 import { DropdownComponent } from "../dropdown/dropdown.component";
+import { UserDetailsService } from '../../services/user-details.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,10 @@ import { DropdownComponent } from "../dropdown/dropdown.component";
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  private sidebarService= inject(SidebarService)
+  private sidebarService = inject(SidebarService)
   private router = inject(Router)
+  private userDetails = inject(UserDetailsService)
+  user = this.userDetails.getCurrentUser();
 
   toggleSidebar() {
     this.sidebarService.toggleSidebar();
@@ -21,6 +24,8 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('role');
+    localStorage.removeItem('userDetails');
+
     this.router.navigate(['/login']);
   }
 }

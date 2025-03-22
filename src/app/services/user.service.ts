@@ -6,6 +6,7 @@ interface Expense {
   id: number;
   price: number;
   date: string | number;
+  expense: string;
   total_Expenditure: string;
 }
 
@@ -47,8 +48,8 @@ export class UserService {
     return this.http.get<User[]>(BASE_URL);
   }
 
-  getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(`${BASE_URL}/${userId}`);
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${BASE_URL}?id=${id}`);
   }
 
   createUser(user:  Pick<User, 'id' | 'first_name' | 'last_name' | 'email' | 'password' | 'budget_limit' | 'expenses' | 'role'>): Observable< Pick<User,  'id' | 'first_name' | 'last_name' | 'email' | 'password' | 'budget_limit'| 'expenses' | 'role'>> {
@@ -65,8 +66,8 @@ export class UserService {
 
   addExpense(userId: number, expense: Expense): Observable<User> {
     return this.getUserById(userId).pipe(
-      switchMap(user => {
-        const updatedExpenses = [...user.expenses ?? [], expense];
+      switchMap((user: any) => {
+        const updatedExpenses = [...user[0].expenses ?? [], expense];
         return this.updateUser(userId, { expenses: updatedExpenses });
       })
     );
@@ -74,8 +75,9 @@ export class UserService {
 
   updateExpense(userId: number, expenseId: number, updatedExpense: Partial<Expense>): Observable<User> {
     return this.getUserById(userId).pipe(
-      switchMap(user => {
-        const updatedExpenses = user.expenses?.map(exp =>
+      switchMap((user:any) => {
+
+        const updatedExpenses = user[0].expenses?.map((exp: any) =>
           exp.id === expenseId ? { ...exp, ...updatedExpense } : exp
         );
         return this.updateUser(userId, { expenses: updatedExpenses });
@@ -85,8 +87,8 @@ export class UserService {
 
   deleteExpense(userId: number, expenseId: number): Observable<User> {
     return this.getUserById(userId).pipe(
-      switchMap(user => {
-          const updatedExpenses = user.expenses?.filter(exp => exp.id !== expenseId);
+      switchMap((user: any) => {
+          const updatedExpenses = user[0].expenses?.filter((exp: Expense) => exp.id !== expenseId);
           return this.updateUser(userId, { expenses: updatedExpenses });
       })
     );

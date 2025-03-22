@@ -8,7 +8,6 @@ const BASE_URL = 'http://localhost:3000';
 export const apiInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   const toastService = inject(ToastService);
 
-  console.log("intercpetors are called")
   let modifiedReq = req.clone({
     url: req.url.startsWith('http') ? req.url : `${BASE_URL}/${req.url}`,
     setHeaders: {
