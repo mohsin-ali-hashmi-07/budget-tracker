@@ -16,3 +16,20 @@ body { margin: 0 }
   .dense-2 {
     @include mat.all-component-densities(-3);
   }
+
+  // .success-toast {
+  //   background-color: #4caf50; /* Green background */
+  //   color: white; /* White text */
+  //   font-weight: bold; /* Bold text */
+  //   border-radius: 4px; /* Rounded corners */
+  //   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  // }
+
+  
+  // .info-toast {
+  //   background-color: #2196f3; /* Blue background */
+  //   color: white; /* White text */
+  //   font-weight: bold; /* Bold text */
+  //   border-radius: 4px; /* Rounded corners */
+  //   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  // }

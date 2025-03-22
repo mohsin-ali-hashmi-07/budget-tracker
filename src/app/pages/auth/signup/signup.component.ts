@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { catchError, of, tap } from 'rxjs';
 import { UserService } from '../../../services/user.service';
+import { ToastService } from '../../../services/toast.service';
 
 interface SignupForm {
   firstName: FormControl<string | null>;
@@ -38,6 +39,7 @@ export class SignupComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private userService = inject(UserService);
+ private toastService = inject(ToastService);
   signupForm: FormGroup<SignupForm>;
 
   constructor() {
@@ -86,8 +88,9 @@ export class SignupComponent {
 
       this.userService.createUser(userData)
         .pipe(
-          tap((newUser) => {
-            console.log('User created successfully:', newUser);
+          tap(() => {
+            
+            this.toastService.showToast('User created successfully', 'success');
             this.router.navigate(['/login']);
           })
         )

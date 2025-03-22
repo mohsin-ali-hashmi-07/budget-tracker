@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ import { UserService } from '../../../services/user.service';
 export class LoginComponent {
   imagePath = 'assets/images/loginImage.svg';
   hidePassword = true;
-
+  private toastService = inject(ToastService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private userService = inject(UserService);
@@ -44,11 +45,11 @@ export class LoginComponent {
         .pipe()
         .subscribe((users) => {
           if (users && users.length > 0) {
-            const user = users[0]; 
             localStorage.setItem('role', 'user'); 
+            this.toastService.showToast('Login Success', 'success');
             this.router.navigate(['/home/expense']);
           } else {
-            alert('Invalid email or password. Please try again.');
+            this.toastService.showToast('Email or Password incorrect', 'danger');
           }
         });
     }
