@@ -1,0 +1,47 @@
+<div class="modal-wrapper">
+    <h2 mat-dialog-title>{{ dialogTitle }}</h2>
+    <div mat-dialog-content>
+      <form [formGroup]="userForm">
+        <!-- First Name -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="first_name" placeholder="First Name" />
+        </mat-form-field>
+  
+        <!-- Last Name -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="last_name" placeholder="Last Name" />
+        </mat-form-field>
+  
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email" />
+        </mat-form-field>
+  
+        <!-- Phone Number -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phone_number" placeholder="Phone Number" />
+        </mat-form-field>
+  
+        <!-- Budget Limit -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Budget Limit</mat-label>
+          <input matInput formControlName="budget_limit" type="number" placeholder="Budget Limit" />
+        </mat-form-field>
+      </form>
+    </div>
+    <div mat-dialog-actions class="form-row">
+      <button class="half-width less-rounded-padding" mat-outlined-button (click)="onCancel()">Cancel</button>
+      <button
+        class="half-width less-rounded-padding"
+        mat-raised-button
+        [color]="data.mode === 'delete' ? 'warn' : 'primary'"
+        (click)="onSave()"
+      >
+        {{ actionButtonLabel }}
+      </button>
+    </div>
+  </div>
