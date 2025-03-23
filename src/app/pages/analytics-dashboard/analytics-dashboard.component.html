@@ -1,1 +1,21 @@
-<p>analytics-dashboard works!</p>
+<div class="analysis-wrapper">
+  <h2>Analysis</h2>
+  <mat-card>
+    <mat-card-header class="header">
+      <mat-card-title><h5>Expenses</h5></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Show loading message while data is being fetched -->
+      @if (isLoading()) {
+        <div class="loading-message">calculating analysis...</div>
+      }
+  
+      @if (!isLoading()) {
+        <canvasjs-chart
+          [options]="lineChartOptions()"
+          [styles]="{ width: '100%', height: '360px' }"
+        ></canvasjs-chart>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>
