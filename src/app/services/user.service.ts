@@ -12,12 +12,12 @@ interface Expense {
 
 export interface User {
   id?: number;
-  first_name: string;
-  last_name: string;
-  email: string;
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+  phone_number?: number | null;
+  budget_limit?: number | null;
   password?: string;
-  phone_number?: number;
-  budget_limit?: number;
   role?: string;
   job_title?: string;
   street_address?: string;
@@ -62,6 +62,10 @@ export class UserService {
 
   updateUser(userId: number, updatedData: Partial<User>): Observable<User> {
     return this.http.patch<User>(`${BASE_URL}/${userId}`, updatedData);
+  }
+
+  deleteUser(userId: number): Observable<User> {
+    return this.http.delete<User>(`${BASE_URL}/${userId}`);
   }
 
   addExpense(userId: number, expense: Expense): Observable<User> {

@@ -1,0 +1,67 @@
+.modal-wrapper {
+    padding: 25px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  mat-dialog-content {
+    max-height: 400px; /* Ensures the dialog doesn't overflow */
+    overflow-y: auto; /* Enable scroll only when necessary */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 10px;
+  
+    .half-width {
+      flex: 1;
+    }
+  }
+  
+  .less-rounded-padding {
+    border-radius: 4px;
+    padding: 0;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px;
+    border-top: 1px solid #e0e0e0; /* Optional: Adds a subtle divider */
+  
+    button {
+      min-width: 100px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+  
+    button[color="primary"] {
+      background-color: #6c63ff;
+      color: white;
+  
+      &:hover {
+        background-color: #554df1;
+      }
+    }
+  
+    button[color="warn"] {
+      background-color: #ff4d4d;
+      color: white;
+  
+      &:hover {
+        background-color: #e63939;
+      }
+    }
+  }
