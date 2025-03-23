@@ -1,0 +1,57 @@
+<div class="profile-container">
+    <mat-card class="profile-card">
+      <div class="profile-header">
+        <img src="assets/images/users.svg" alt="Profile Image" class="profile-image">
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <p>{{ user.job_title }}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="profile-info">
+        <p><mat-icon>call</mat-icon> {{ user.phone_number }}</p>
+        <p><mat-icon>email</mat-icon> {{ user.email }}</p>
+        <p><mat-icon>location_on</mat-icon> {{ user.city }}, {{ user.state }}</p>
+      </div>
+    </mat-card>
+  
+    <div class="profile-content">
+      <!-- About Me Section -->
+      <mat-card class="about-card">
+        <h3 class="section-title">About Me</h3>
+        <mat-divider></mat-divider>
+        <p>{{ aboutMeText }}</p>
+      </mat-card>
+  
+      <!-- Personal Details Section -->
+      <mat-card class="details-card">
+        <h3 class="section-title">Personal Details</h3>
+        <mat-divider></mat-divider>
+        <div class="details-grid">
+          <div class="detail-item">
+            <strong>Full Name</strong>
+            <p>{{ user.first_name }} {{ user.last_name }}</p>
+          </div>
+          <div class="detail-item">
+            <strong>Gender</strong>
+            <p>{{ user.gender }}</p>
+          </div>
+          <div class="detail-item">
+            <strong>Email</strong>
+            <p>{{ user.email }}</p>
+          </div>
+          <div class="detail-item">
+            <strong>Education</strong>
+            <p>{{ user.education }}</p>
+          </div>
+          <div class="detail-item">
+            <strong>Address</strong>
+            <p>{{ user.street_address }}, {{ user.city }}, {{ user.state }}</p>
+          </div>
+          <div class="detail-item">
+            <strong>Budget Limit</strong>
+            <p>{{ user.budget_limit }} PKR</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  

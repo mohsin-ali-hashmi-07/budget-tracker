@@ -22,6 +22,10 @@ export class NavbarComponent {
     this.sidebarService.toggleSidebar();
   }
 
+  goToProfile(){
+    this.router.navigate(['/user-profile']);
+  }
+
   logout() {
     localStorage.removeItem('role');
     localStorage.removeItem('userDetails');
