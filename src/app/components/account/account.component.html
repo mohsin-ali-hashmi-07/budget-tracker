@@ -1,1 +1,100 @@
-<p>account works!</p>
+<div class="account-container">
+    <mat-card class="profile-card">
+      <div class="profile-header">
+        <img src="assets/images/users.svg" alt="Profile Image" class="profile-image">
+        <h3>{{ userData?.first_name }} {{ userData?.last_name }}</h3>
+        <p>{{ userData?.job_title }}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="profile-info">
+        <p><mat-icon>call</mat-icon> {{ userData?.phone_number }}</p>
+        <p><mat-icon>email</mat-icon> {{ userData?.email }}</p>
+        <p><mat-icon>location_on</mat-icon> {{ userData?.city }}, {{ userData?.state }}</p>
+      </div>
+    </mat-card>
+  
+    <mat-card class="account-form">
+      <h3 class="section-title">My Account</h3>
+      <form [formGroup]="accountForm" (submit)="onSubmit()">
+        <h4>Name & Job</h4>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="first_name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="last_name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Job Title</mat-label>
+            <input matInput formControlName="job_title">
+          </mat-form-field>
+        </div>
+  
+        <h4>Address</h4>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Street Address</mat-label>
+            <input matInput formControlName="street_address">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="state">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Zip Code</mat-label>
+            <input matInput type="number" formControlName="zip_code">
+          </mat-form-field>
+        </div>
+  
+        <h4>Contact Info</h4>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="tel" formControlName="phone_number">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+        </div>
+  
+        <h4>Bio</h4>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput type="date" formControlName="dob">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Education</mat-label>
+            <input matInput formControlName="education">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <h4>Financial Information</h4>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Budget (PKR)</mat-label>
+          <input matInput type="number" formControlName="budget_limit">
+        </mat-form-field>
+  
+        <div class="button-group">
+          <button mat-button color="primary">Cancel</button>
+          <button mat-flat-button color="primary" [disabled]="accountForm.invalid" type="submit">Update</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

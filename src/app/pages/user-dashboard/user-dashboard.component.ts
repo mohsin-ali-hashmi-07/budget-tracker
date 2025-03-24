@@ -73,7 +73,6 @@ private userDetails = inject (UserDetailsService)
     console.log('Page changed to:', page);
   }
 
-  // Fetch users from the API
   fetchUsers(): void {
     const currentUser = this.userDetails.getCurrentUser();
     this.userService.getAllUsers().subscribe({

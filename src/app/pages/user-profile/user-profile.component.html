@@ -16,11 +16,23 @@
   </div>
 </div>
 
-<!-- <div class="content-section"> -->
-  <ng-container *ngIf="selectedTabIndex === 0">
-    <app-profile/>
-  </ng-container>
-  <ng-container *ngIf="selectedTabIndex === 1">
-    <app-account/>
-  </ng-container>
-<!-- </div> -->
+<ng-container *ngIf="isLoading">
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+
+<!-- Error state -->
+<ng-container *ngIf="error && !isLoading">
+  <div class="error-message">
+    {{ error }}
+    <button mat-button color="primary" (click)="fetchUserData()">Retry</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="selectedTabIndex === 0">
+  <app-profile [userData]="userData"/>
+</ng-container>
+<ng-container *ngIf="selectedTabIndex === 1">
+  <app-account [userData]="userData"/>
+</ng-container>
