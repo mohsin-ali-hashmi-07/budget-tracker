@@ -32,7 +32,7 @@ import { UserDetailsService } from '../../services/user-details.service';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ],
+  ],
   templateUrl: './expenses-dashboard.component.html',
   styleUrl: './expenses-dashboard.component.scss'
 })
@@ -40,9 +40,9 @@ export class ExpensesDashboardComponent {
   displayedColumns: string[] = ['expense', 'totalExpenditure', 'price', 'date', 'actions'];
   dataSource = new MatTableDataSource<any>([]);
   private dialog = inject(MatDialog);
-  private userService = inject(UserService); 
-  private userDetails = inject (UserDetailsService)
-  
+  private userService = inject(UserService);
+  private userDetails = inject(UserDetailsService)
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -77,21 +77,27 @@ export class ExpensesDashboardComponent {
     const user = this.userDetails.getCurrentUser();
     this.userService.getUserById(user.id).subscribe({
       next: (user: any) => {
-        
+        const budgetLimit = user[0].budget_limit ?? 0;
         const expenses = user[0].expenses || [];
-        this.dataSource.data = expenses.map((expense: any) => ({
-          id: expense.id,
-          expense: expense.expense,
-          totalExpenditure: expense.total_Expenditure,
-          price: expense.price,
-          date: expense.date,
-        }));
+        this.dataSource.data = expenses.map((expense: any) => {
+          const price = expense.price ?? 0;
+          const totalExpenditure = budgetLimit > 0 ? Math.round((price / budgetLimit) * 100): '0%';
+          return {
+            id: expense.id,
+            expense: expense.expense,
+            totalExpenditure,
+            price: expense.price,
+            date: expense.date,
+          }
+        }
+
+        );
         this.totalItems.set(expenses.length);
       }
     });
   }
 
-  openDialog(mode: 'add' | 'edit' | 'delete', expense?: { expense: string; price: number; date: number, id:number, total_Expenditure: string }) {
+  openDialog(mode: 'add' | 'edit' | 'delete', expense?: { expense: string; price: number; date: number, id: number, total_Expenditure: string }) {
     const dialogRef = this.dialog.open(ExpenseDialogComponent, {
       width: '450px',
       data: { mode, expense }
