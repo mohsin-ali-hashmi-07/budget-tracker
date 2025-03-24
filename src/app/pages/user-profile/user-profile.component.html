@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<div class="profile-container">
+  <div class="left-section">
+    <button mat-icon-button class="back-button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="profile-text">Profile</span>
+  </div>
+
+  <div class="right-section">
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex" class="small-tabs">
+      <mat-tab label="Profile"></mat-tab>
+      <mat-tab label="My Account"></mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<ng-container *ngIf="isLoading">
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+
+<!-- Error state -->
+<ng-container *ngIf="error && !isLoading">
+  <div class="error-message">
+    {{ error }}
+    <button mat-button color="primary" (click)="fetchUserData()">Retry</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="selectedTabIndex === 0">
+  <app-profile [userData]="userData"/>
+</ng-container>
+<ng-container *ngIf="selectedTabIndex === 1">
+  <app-account [userData]="userData"/>
+</ng-container>

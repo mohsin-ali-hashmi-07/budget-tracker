@@ -17,7 +17,7 @@ export class SidebarComponent {
  isCollapsed = this.sidebarService.isCollapsed$;
 
   logout() {
-    localStorage.removeItem('role');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }

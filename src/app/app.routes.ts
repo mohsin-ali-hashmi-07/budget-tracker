@@ -8,12 +8,14 @@ import { AnalyticsDashboardComponent } from './pages/analytics-dashboard/analyti
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { noAuthGuard } from './guards/no-auth.guard';
 import { authGuard } from './guards/auth.guard';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
     { path: "",  redirectTo: 'login', pathMatch: 'full' },
     { path: "login", component: LoginComponent , canActivate: [noAuthGuard]},
     { path: "signup", component: SignupComponent, canActivate: [noAuthGuard] },
     { path: "forgot-password", component: ForgotPasswordComponent, canActivate: [noAuthGuard] },
+    { path: "user-profile", component: UserProfileComponent , canActivate: [authGuard]},
     {
         path: 'home',
         component: NavLayoutComponent,
