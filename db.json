@@ -7,7 +7,7 @@
       "email": "mohsin@email.com",
       "password": 12345,
       "phone_number": 3075258159,
-      "budget_limit": 100000,
+      "budget_limit": 1000001,
       "role": "user",
       "job_title": "Coder",
       "street_address": "78",
@@ -45,13 +45,13 @@
       "expenses": [
         {
           "expense": "shop",
-          "price": 10000,
+          "price": 100000,
           "date": 1742842800000,
           "id": 617835
         },
         {
           "expense": "food",
-          "price": 5000,
+          "price": 50004,
           "date": 1742756400000,
           "id": 895429
         }
