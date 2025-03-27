@@ -15,18 +15,6 @@ export const apiInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, nex
     }
   });
 
-
-  if (!req.url.includes('login') && !req.url.includes('users')) {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      modifiedReq = modifiedReq.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    }
-  }
-
   return next(modifiedReq).pipe(
     catchError((error) => {
       toastService.showToast('Something went wrong', 'danger');

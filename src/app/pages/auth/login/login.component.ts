@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { GridLayoutComponent } from "../../../components/layouts/grid-layout/grid-layout.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
 import { ToastService } from '../../../services/toast.service';
+import { AuthService } from '../../../services/auth.service';
 import { UserDetailsService } from '../../../services/user-details.service';
 
 @Component({
@@ -20,8 +20,7 @@ import { UserDetailsService } from '../../../services/user-details.service';
     MatIconModule,
     MatCheckboxModule,],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   imagePath = 'assets/images/loginImage.svg';
@@ -29,7 +28,7 @@ export class LoginComponent {
   private toastService = inject(ToastService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
   private userDetailsService = inject(UserDetailsService);
 
   loginForm: FormGroup = this.fb.group({
@@ -38,22 +37,22 @@ export class LoginComponent {
     rememberMe: [false],
   });
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
-
-      this.userService.login(email, password)
-        .pipe()
-        .subscribe((users) => {
-          if (users && users.length > 0) { 
-            this.userDetailsService.setUserDetails(users[0]);
-            this.toastService.showToast('Login Success', 'success');
-            this.router.navigate(['/home/expense']);
-          } else {
-            this.toastService.showToast('Email or Password incorrect', 'danger');
-          }
-        });
+      try {
+        const { email, password } = this.loginForm.value;
+        const user = await this.authService.login(email, password);
+        
+        if (user) {
+          this.userDetailsService.setUserDetails(user);
+          this.toastService.showToast('Login Success', 'success');
+          this.router.navigate(['/home/expense']);
+        } else {
+          this.toastService.showToast('Email or Password incorrect', 'danger');
+        }
+      } catch (error) {
+        this.toastService.showToast('Login failed', 'danger');
+      }
     }
   }
 
@@ -64,5 +63,4 @@ export class LoginComponent {
   goToResetPassword() {
     this.router.navigate(['/forgot-password']);
   }
-
 }
